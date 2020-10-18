@@ -1,0 +1,40 @@
+﻿@model ProjectAspNet.Models.Palavra
+@{
+    Layout = "_Layout";
+}
+
+@{ ViewBag.Title = "Cadastrar";
+        }
+
+
+        <form method="post">
+            <div class="form-group">
+                <input type="hidden" name="id" value="@Model.Id"/>
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" value="@Model.Name" name="name" id="name" placeholder="Digite seu nome">
+                @Html.ValidationMessage("name")
+            </div>
+            <div class="form-group">
+                <label for="nivel">Nível</label>
+                <select name="nivel" class="custom-select">
+                    @foreach (var nivel in ViewBag.Nivel)
+                    {
+                        if (nivel.Id == Model.Nivel)
+                        {
+                            <option  selected value="@nivel.Id">@nivel.Name</option>
+                        }
+                        else
+                        {
+                            <option  value="@nivel.Id">@nivel.Name</option>
+                        }
+
+                    }
+                </select>
+               <!-- <input type="text" class="form-control" value="@Model.Nivel" name="nivel" id="nivel" placeholder="Digite o nivel: 1 - Fácil, 2 - Médio, 3 - Díficil"> -->
+                @Html.ValidationMessage("nivel")
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+

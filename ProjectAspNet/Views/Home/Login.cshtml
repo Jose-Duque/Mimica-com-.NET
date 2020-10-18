@@ -1,0 +1,34 @@
+﻿
+@{
+    // Layout = "_Layout"
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Palavra - Login";
+}
+
+@if (TempData["MensagenError"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["mensagenError"]
+    </div>
+}
+
+
+<form method="post" action="~/home/login">
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" class="form-control" value="" name="email" id="email" placeholder="Digite seu E-mail">
+        @Html.ValidationMessage("email")
+    </div>
+    <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" class="form-control" value="" name="password" id="password" placeholder="Digite sua Senha">
+        @Html.ValidationMessage("password")
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+<h2>@ViewBag.msg</h2>

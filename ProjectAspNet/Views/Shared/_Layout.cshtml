@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Http;
+@{ 
+    string Login = Context.Session.GetString("Login");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    
+        <header>
+            <!-- menu -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">Lista de Palavras</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active" id="home">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+
+                        @if (Login != null)
+                        {
+                            <li class="nav-item" id="palavra">
+                                <a class="nav-link" href="/palavra">Palavras</a>
+                            </li>
+                            <li class="nav-item" id="login">
+                                <a class="nav-link" href="/home/logout">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item" id="login">
+                                <a class="nav-link" href="/home/login">Login</a>
+                            </li>
+                        }
+
+                        <li class="nav-item" id="contato">
+                            <a class="nav-link" href="/contato">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+    
+    <div class="container">
+        
+        <div>
+            <!--Conteudo da página-->
+            @RenderBody()
+        </div>
+        <footer>
+            <!--Rodapé-->
+            <div class="row">
+                <div class="col-sm-12">
+                    Todos os direitos reservados &copy; 2020 - @DateTime.Now.Year
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
